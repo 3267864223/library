@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.springbootlibrary.mapper.bookMapper.BookMapper">
+
+    <select id="selectAllBook" resultType="BookInfo">
+        select *
+        from bookmanagement.book_info
+    </select>
+
+    <select id="selectByBookId" parameterType="int" resultType="BookInfo">
+        select *
+        from bookmanagement.book_info
+        where book_id = #{bookId}
+    </select>
+
+    <update id="updateBook" parameterType="BookInfo">
+        update bookmanagement.book_info
+        set `name`       = #{name},
+            author       = #{author},
+            publish      = #{publish},
+            ISBN         = #{isbn},
+            introduction = #{introduction},
+            `language`   = #{language},
+            price        = #{price},
+            pubdate      = #{pubdate},
+            class_id     = #{classId},
+            pressmark    = #{pressmark},
+            `state`      = #{state}
+        where book_id = #{bookId}
+    </update>
+
+    <delete id="deleteBook" parameterType="int">
+        delete
+        from bookmanagement.book_info
+        where book_id = #{bookId}
+    </delete>
+
+    <select id="selectBookByName" parameterType="string" resultType="BookInfo">
+        select *
+        from bookmanagement.book_info
+        where book_info.name LIKE CONCAT('%' #{bookName} '%')
+    </select>
+    
+    <insert id="insertBook" parameterType="BookInfo">
+        insert into bookmanagement.book_info (`name`, author, publish, ISBN, introduction, `language`, price, pubdate,
+                                              class_id, pressmark, `state`)
+        VALUES (#{name}, #{author}, #{publish}, #{isbn}, #{introduction}, #{language}, #{price}, #{pubdate}, #{classId},
+                #{pressmark}, #{state})
+    </insert>
+
+</mapper>

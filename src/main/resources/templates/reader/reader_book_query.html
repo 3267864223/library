@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>全部图书信息</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <script th:src="@{/js/jquery-3.2.1.js}"></script>
+    <script th:src="@{/js/bootstrap.min.js}"></script>
+    <style>
+        body{
+            background-color: rgb(240,242,245);
+        }
+    </style>
+</head>
+<body>
+<div th:replace="components/readerPublicComponents::topbar"></div>
+<div th:replace="components/adminPublicComponents::message"></div>
+<div style="padding: 30px 550px 10px">
+    <form   method="post" th:action="@{/reader/searchBoook}" class="form-inline"  id="searchform">
+        <div class="input-group">
+            <input type="text" placeholder="输入图书号或图书名" class="form-control" id="search" name="searchWord">
+            <span class="input-group-btn">
+                            <input type="submit" value="搜索" class="btn btn-default">
+            </span>
+        </div>
+    </form>
+    <script>
+        function mySubmit(flag){
+            return flag;
+        }
+        $("#searchform").submit(function () {
+            var val=$("#search").val();
+            if(val==''){
+                alert("请输入关键字");
+                return mySubmit(false);
+            }
+        })
+    </script>
+</div>
+<div th:replace="components/adminPublicComponents::message"></div>
+<div class="panel panel-default">
+    <div class="panel-body">
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>书名</th>
+                <th>作者</th>
+                <th>出版社</th>
+                <th>ISBN</th>
+                <th>价格</th>
+                <th>状态</th>
+                <th>详情</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="bookInfo:${bookInfoList}">
+                <td th:text="${bookInfo.getName()}"></td>
+                <td th:text="${bookInfo.getAuthor()}"></td>
+                <td th:text="${bookInfo.getPublish()}"></td>
+                <td th:text="${bookInfo.getIsbn()}"></td>
+                <td th:text="${bookInfo.getPrice()}"></td>
+                <td th:text="${bookInfo.getState()}==0?'借出':'在馆'"></td>
+                <td><a th:href="@{/reader/bookDetail(bookId=${bookInfo.getBookId()})}">
+                    <button type="button" class="btn btn-success btn-xs">详情</button>
+                </a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+</body>
+</html>

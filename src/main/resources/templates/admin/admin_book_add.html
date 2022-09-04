@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>图书信息添加</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <script th:src="@{/js/jquery-3.2.1.js}"></script>
+    <script th:src="@{/js/bootstrap.min.js}" ></script>
+    <style>
+        body{
+            background-color: rgb(240,242,245);
+        }
+    </style>
+
+</head>
+<body>
+<div th:replace="components/adminPublicComponents::topbar"></div>
+
+<div class="col-xs-6 col-md-offset-3" style="position: relative;width: 60%;margin-left: 20%;margin-top: 5%">
+            <form th:action="@{/bookAddDo}" method="post" id="addbook" >
+                <div class="form-group">
+                    <label for="name">图书名</label>
+                    <input type="text" class="form-control" name="name" id="name" placeholder="请输入书名">
+                </div>
+                <div class="form-group">
+                    <label for="author">作者</label>
+                    <input type="text" class="form-control" name="author" id="author"  placeholder="请输入作者名">
+                </div>
+                <div class="form-group">
+                    <label for="publish">出版社</label>
+                    <input type="text" class="form-control"  name="publish" id="publish"  placeholder="请输入出版社">
+                </div>
+                <div class="form-group">
+                    <label for="isbn">ISBN</label>
+                    <input type="text" class="form-control" name="isbn" id="isbn"  placeholder="请输入ISBN">
+                </div>
+                <div class="form-group">
+                    <label for="introduction">简介</label>
+                    <textarea class="form-control" rows="3"  name="introduction" id="introduction" placeholder="请输入简介"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="language">语言</label>
+                    <input type="text" class="form-control" name="language" id="language"  placeholder="请输入语言">
+                </div>
+                <div class="form-group">
+                    <label for="price">价格</label>
+                    <input type="text" class="form-control"  name="price"  id="price" placeholder="请输入价格">
+                </div>
+                <div class="form-group">
+                    <label for="pubdate">出版日期</label>
+                    <input type="text" class="form-control"  name="pubdate" id="pubdate"   placeholder="请输入出版日期">
+                </div>
+                <div class="form-group">
+                    <label for="classId">分类号</label>
+                    <input type="text" class="form-control" name="classId" id="classId"  placeholder="请输入分类号">
+                </div>
+                <div class="form-group">
+                    <label for="pressmark">书架号</label>
+                    <input type="text" class="form-control"  name="pressmark" id="pressmark" placeholder="请输入书架号">
+                </div>
+                <div class="form-group">
+                    <label for="state">状态</label>
+                    <input type="text" class="form-control"  name="state"  id="state"   placeholder="请输入图书状态">
+                </div>
+
+
+                <input type="submit" value="添加" class="btn btn-success btn-sm text-left">
+                <script>
+                    function mySubmit(flag){
+                        return flag;
+                    }
+                    $("#addbook").submit(function () {
+                        if($("#name").val()==''||$("#author").val()==''||$("#publish").val()==''||$("#isbn").val()==''||$("#introduction").val()==''||$("#language").val()==''||$("#price").val()==''||$("#pubdate").val()==''||$("#classId").val()==''||$("#pressmark").val()==''||$("#state").val()==''){
+                            alert("请填入完整图书信息！");
+                            return mySubmit(false);
+                        }
+                    })
+                </script>
+            </form>
+
+</div>
+
+
+
+</body>
+</html>

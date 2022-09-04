@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.springbootlibrary.mapper.userMapper.ReaderMapper">
+
+    <select id="selectByReaderCardById" parameterType="int" resultType="ReaderCard">
+        select * from bookmanagement.reader_card where reader_id = #{readerCardId}
+    </select>
+
+    <select id="selectAllByReaderInfo" resultType="ReaderInfo">
+        select * from bookmanagement.reader_info
+    </select>
+
+    <select id="selectByReaderInfoById" parameterType="int" resultType="ReaderInfo">
+        select * from bookmanagement.reader_info where reader_id = #{readerCardId}
+    </select>
+
+    <update id="updateReaderInfo" parameterType="ReaderInfo">
+        update bookmanagement.reader_info
+        set `name`  = #{name},
+            sex     = #{sex},
+            birth   = #{birth},
+            address = #{address},
+            telcode = #{telcode}
+        where reader_id = #{readerId}
+    </update>
+
+    <delete id="deleteReaderInfo" parameterType="int">
+        delete from bookmanagement.reader_info where reader_id = #{readerInfoId}
+    </delete>
+
+    <delete id="deleteReaderCard" parameterType="int">
+        delete from bookmanagement.reader_card where reader_id = #{readerCardId}
+    </delete>
+
+    <insert id="insertReaderInfo" parameterType="ReaderInfo">
+        insert into bookmanagement.reader_info (reader_id, `name`, sex, birth, address, telcode)
+        VALUES (#{readerId}, #{name}, #{sex}, #{birth}, #{address}, #{telcode})
+    </insert>
+
+    <insert id="insertReaderCard" parameterType="ReaderCard">
+        insert into bookmanagement.reader_card (reader_id, `name`)
+        VALUES (#{readerId}, #{name})
+    </insert>
+
+    <update id="updateReaderCard" parameterType="ReaderCard">
+        update bookmanagement.reader_card
+        set `name` = #{name} ,
+            `passwd` = #{passwd}
+        where reader_id = #{readerId}
+    </update>
+
+</mapper>

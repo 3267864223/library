@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>[[${readerinfo.name}]]的主页</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <script th:src="@{/js/jquery-3.2.1.js}"></script>
+    <script th:src="@{/js/bootstrap.min.js}" ></script>
+    <style>
+        body{
+            background-color: rgb(240,242,245);
+        }
+    </style>
+</head>
+<body>
+<div th:replace="components/readerPublicComponents::topbar"></div>
+<div class="col-xs-5 col-md-offset-3">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">
+                信息修改
+            </h3>
+        </div>
+        <div class="panel-body">
+            <form th:action="@{/reader_edit_do}" method="post" id="edit" >
+
+                <div class="input-group">
+                    <span  class="input-group-addon">读者证号</span>
+                    <input type="text" readonly="readonly" class="form-control" name="readerId" id="readerId" th:value="${readerinfo.readerId}">
+                </div>
+                <div class="input-group">
+                    <span class="input-group-addon">姓名</span>
+                    <input type="text" class="form-control" name="name" id="name" th:value="${readerinfo.name}" >
+                </div>
+                <div class="input-group">
+                    <span  class="input-group-addon">性别</span>
+                    <input type="text" class="form-control" name="sex" id="sex"  th:value="${readerinfo.sex}" >
+                </div>
+                <div class="input-group">
+                    <span class="input-group-addon">生日</span>
+                    <input type="text" class="form-control" name="birth" id="birth"  th:value="${readerinfo.birth}" >
+                </div>
+                <div class="input-group">
+                    <span  class="input-group-addon">地址</span>
+                    <input type="text" class="form-control" name="address" id="address"  th:value="${readerinfo.address}" >
+                </div>
+                <div class="input-group">
+                    <span  class="input-group-addon">电话</span>
+                    <input type="text" class="form-control" name="telcode" id="telcode"  th:value="${readerinfo.telcode}" >
+                </div>
+                <br/>
+                <input type="submit" value="确定" class="btn btn-success btn-sm text-left">
+                <script>
+                    function mySubmit(flag){
+                        return flag;
+                    }
+                    $("#edit").submit(function () {
+                        if($("#name").val()==''||$("#sex").val()==''||$("#birth").val()==''||$("#address").val()==''||$("#telcode").val()==''){
+                            alert("请填入完整读者信息！");
+                            return mySubmit(false);
+                        }
+                    })
+                </script>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>

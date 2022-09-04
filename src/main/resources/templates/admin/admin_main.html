@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>管理主页</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <script th:src="@{/js/jquery-3.2.1.js}"></script>
+    <script th:src="@{/js/bootstrap.min.js}"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: visible;
+            background-color: rgb(240, 242, 245);
+        }
+
+        #newsa {
+            width: 500px;
+            height: 200px;
+            position: fixed;
+            left: 35%;
+            top: 30%;
+        }
+    </style>
+
+</head>
+<body th:style="'background-image: url(./images/281289-106.jpg)'">
+<div th:replace="components/adminPublicComponents::topbar"></div>
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    温馨提示
+                </h4>
+            </div>
+            <div class="modal-body">
+                使用结束后请安全退出。
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">知道了
+                </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+</body>
+</html>

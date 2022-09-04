@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.springbootlibrary.mapper.LendMapper.LendMapper">
+
+    <select id="selectAllLend" resultType="LendList">
+        select *
+        from bookmanagement.lend_list
+    </select>
+
+    <select id="selectByBookId" parameterType="int" resultType="LendList">
+        select *
+        from bookmanagement.lend_list
+        where book_id = #{bookId}
+    </select>
+
+    <insert id="insertLend" parameterType="LendList">
+        insert into bookmanagement.lend_list (book_id, reader_id, lend_date, back_date)
+        VALUES (#{bookId}, #{readerId}, #{lendDate}, #{backDate})
+    </insert>
+
+    <select id="selectByReaderId" parameterType="int" resultType="LendList">
+        select *
+        from bookmanagement.lend_list
+        where reader_id = #{readerId}
+    </select>
+
+    <update id="updateLendList" parameterType="LendList">
+        update bookmanagement.lend_list
+        set book_id = #{bookId},
+            reader_id = #{readerId},
+            lend_date = #{lendDate},
+            back_date = #{backDate}
+        where sernum = #{sernum}
+    </update>
+
+    <delete id="deleteLendListBySernum" parameterType="int">
+        delete from bookmanagement.lend_list where sernum = #{sernum}
+    </delete>
+
+
+</mapper>

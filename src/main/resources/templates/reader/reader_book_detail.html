@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>《 [[${book.name}]]》</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <script th:src="@{/js/jquery-3.2.1.js}"></script>
+    <script th:src="@{/js/bootstrap.min.js}" ></script>
+    <style>
+        body{
+            background-color: rgb(240,242,245);
+        }
+    </style>
+</head>
+<body>
+<div th:replace="components/readerPublicComponents::topbar"></div>
+
+<div class="col-xs-6 col-md-offset-3" style="position: relative;margin-top: 3%">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">《 [[${book.name}]]》</h3>
+        </div>
+        <div class="panel-body">
+            <table class="table table-hover">
+                <tr>
+                    <th width="15%">书名</th>
+                    <td th:text="${book.getName()}"></td>
+                </tr>
+                <tr>
+                    <th>作者</th>
+                    <td th:text="${book.getAuthor()}"></td>
+                </tr>
+                <tr>
+                    <th>出版社</th>
+                    <td th:text="${book.getPublish()}">${detail.publish}</td>
+                </tr>
+                <tr>
+                    <th>ISBN</th>
+                    <td th:text="${book.getIsbn()}"></td>
+                </tr>
+                <tr>
+                    <th>简介</th>
+                    <td th:text="${book.getIntroduction()}"></td>
+                </tr>
+                <tr>
+                    <th>语言</th>
+                    <td th:text="${book.language}"></td>
+                </tr>
+                <tr>
+                    <th>价格</th>
+                    <td th:text="${book.price}"></td>
+                </tr>
+                <tr>
+                    <th>出版日期</th>
+                    <td th:text="${book.pubdate==null?'日期格式错误，应为 yyyy-MM-dd':book.pubdate}"></td>
+                </tr>
+                <tr>
+                    <th>分类号</th>
+                    <td th:text="${book.classId}"></td>
+                </tr>
+                <tr>
+                    <th>书架号</th>
+                    <td th:text="${book.pressmark}"></td>
+                </tr>
+                <tr>
+                    <th>状态</th>
+                    <td th:if="${book.getState()==1}">在馆</td>
+                    <td th:if="${book.getState()==0}">借出</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
